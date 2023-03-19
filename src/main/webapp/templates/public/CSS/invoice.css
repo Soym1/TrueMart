@@ -1,0 +1,194 @@
+.container.d-flex.justify-content-center.mt-50.mb-50 {
+    margin: 0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.5385;
+    color: #333;
+    text-align: left;
+    background-color: #eee
+}
+
+.mt-50 {
+    margin-top: 50px
+}
+
+.mb-50 {
+    margin-bottom: 50px
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .1875rem
+}
+
+img {
+    width: 100%;
+}
+
+.card-img-actions {
+    position: relative
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    text-align: center;
+    margin-bottom: 20px
+}
+
+#download-invoice {
+    background: white;
+    border: none;
+    float: right;
+}
+
+.download-btn {
+    height: 15px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 17px
+}
+
+.invoice-color {
+    color: red !important
+}
+
+.card-header {
+    padding: .9375rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .02);
+    border-bottom: 1px solid rgba(0, 0, 0, .125)
+}
+
+a {
+    text-decoration: none !important;
+    color: #212529;
+    font-size: 1rem;
+}
+
+td {
+    vertical-align: center !important;
+}
+
+.btn-light {
+    color: #333;
+    background-color: #fafafa;
+    border-color: #ddd
+}
+
+.header-elements-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap
+}
+
+@media (min-width: 768px) {
+    .wmin-md-400 {
+        min-width: 400px !important
+    }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2196f3
+}
+
+.btn-labeled > b {
+    position: absolute;
+    top: -1px;
+    background-color: blue;
+    display: block;
+    line-height: 1;
+    padding: .62503rem
+}
+
+#img-header {
+    width: 100%;
+}
+
+.table td, .table th {
+    padding: 0.75rem;
+    vertical-align: middle !important;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    text-align: center !important;
+}
+
+.table-responsive {
+    overflow: unset !important;
+}
+
+table.table.table-lg {
+    margin-bottom: 70px;
+}
+
+.col-sm-6 {
+    margin-bottom: 30px;
+}
+
+.text-sm-right {
+    text-align: right;
+}
+
+h4.mb-2.mt-md-2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+h5.my-2 {
+    font-size: 20px;
+}
+
+thead {
+    border: 1px solid #ebebeb;
+}
+
+.mb-2.ml-auto {
+    float: right;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.d-flex.flex-wrap.wmin-md-400 {
+    display: flex;
+    justify-content: space-between;
+}
+
+span.text-muted {
+    text-align: center;
+}
+
+.download-span{
+    font-family: 'Raleway';
+    margin-left: 5px;
+}
+ #download-invoice:hover{
+     color: red;
+     font-style: italic;
+ }

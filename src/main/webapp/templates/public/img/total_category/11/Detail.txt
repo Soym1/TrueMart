@@ -1,0 +1,10 @@
+Brand	Lenovo
+Series	IdeaPad 3 81X800ENUS
+Screen Size	15.6 Inches
+Color	Almond
+Hard Disk Size	256 GB
+CPU Model	Core i3
+Ram Memory Installed Size	20 GB
+Operating System	Windows 11
+Card Description	Integrated
+Graphics Coprocessor	Intel UHD Graphics

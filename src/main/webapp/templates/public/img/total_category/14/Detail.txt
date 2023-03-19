@@ -1,0 +1,5 @@
+Brand	Apple
+Model Name	iPad
+Memory Storage Capacity	64 GB
+Screen Size	10.2 Inches
+Display Resolution Maximum	2160x1620 Pixels

@@ -1,0 +1,10 @@
+Brand	Apple
+Screen Size	16 Inches
+CPU Model	Apple M1
+Ram Memory Installed Size	32 GB
+Operating System	Mac OS
+Card Description	Dedicated
+Resolution	8K
+Item Weight	8.4 Pounds
+Chipset Brand	Apple
+CPU Manufacturer	Apple

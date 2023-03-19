@@ -1,0 +1,10 @@
+Brand	Lenovo
+Model Name	Lenovo 14inch Laptop
+Screen Size	14 Inches
+Hard Disk Size	128 GB
+CPU Model	Mobile Intel Pentium 4 Processor
+Ram Memory Installed Size	4 GB
+Operating System	Windows 10
+Graphics Card Description	Intel UHD Graphics
+Graphics Coprocessor	Intel UHD Graphics 605
+CPU Speed	1.1 GHz

@@ -1,0 +1,7 @@
+Apple M1 Max chip for a massive leap in CPU, GPU, and machine learning performance
+10-core CPU delivers up to 2x faster performance to fly through pro workflows quicker than ever
+32-core GPU with up to 4x faster performance for graphics-intensive apps and games
+16-core Neural Engine for up to 5x faster machine learning performance
+Longer battery life, up to 21 hours
+64GB of unified memory so everything you do is fast and fluid
+2TB of superfast SSD storage launches apps and opens files in an instant

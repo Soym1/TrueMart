@@ -1,0 +1,10 @@
+Brand	SAMSUNG
+Model Name	Galaxy Z Fold4
+Wireless Carrier	Unlocked for All Carriers
+Operating System	Android
+Cellular Technology	5G
+Memory Storage Capacity	256 GB
+Connectivity Technology	Bluetooth, USB
+Color	Beige
+Wireless network technology	Wi-Fi
+Ram Memory Installed Size	12 GB

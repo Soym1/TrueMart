@@ -1,0 +1,10 @@
+Brand	SAMSUNG
+Model Name	Galaxy Z Flip4
+Wireless Carrier	Unlocked
+Operating System	Android 12.0
+Cellular Technology	LTE, GSM, WCDMA, UMTS
+Memory Storage Capacity	128 GB
+Connectivity Technology	Bluetooth, Wi-Fi, USB, NFC
+Color	Bora Purple
+Wireless network technology	Wi-Fi
+Ram Memory Installed Size	8 GB

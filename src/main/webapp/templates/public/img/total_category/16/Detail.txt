@@ -1,0 +1,10 @@
+Brand	Apple
+Model Name	iPhone 13
+Wireless Carrier	Unlocked for All Carriers
+OS	iOS 16
+Cellular Technology	5G
+Memory Storage Capacity	128 GB
+Connectivity technologies	Bluetooth
+Color	Midnight
+Screen Size	6.1 Inches
+Wireless network technology	GSM

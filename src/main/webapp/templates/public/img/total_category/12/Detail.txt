@@ -1,0 +1,10 @@
+Brand	Lenovo
+Series	Lenovo IdeaPad 3i
+Screen Size	15.6 Inches
+Color	Gray
+Hard Disk Size	1 TB
+CPU Model	Intel Core i5
+Ram Memory Installed Size	8 GB
+Operating System	Windows 11 Pro
+Card Description	Integrated
+Graphics Coprocessor	Intel Iris Xe Graphics

@@ -1,0 +1,10 @@
+Brand	ASUS
+Series	M1503QA-ES74
+Screen Size	15.6
+Color	Quiet Blue
+Hard Disk Size	512 GB
+CPU Model	Ryzen 7
+Ram Memory Installed Size	16 GB
+Operating System	Windows 11 Home
+Card Description	Integrated
+Graphics Coprocessor	AMD Radeon GPU

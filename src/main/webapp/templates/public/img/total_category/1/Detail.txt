@@ -1,0 +1,10 @@
+Brand	Apple
+Series	MacBook Air
+Screen Size	13.3 Inches
+Color	Space Gray
+Hard Disk Size	512 GB
+CPU Model	Apple M1
+Ram Memory Installed Size	8 GB
+Operating System	Mac OS
+Card Description	Integrated
+Graphics Coprocessor	M1

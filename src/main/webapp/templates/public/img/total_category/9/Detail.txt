@@ -1,0 +1,10 @@
+Brand	ASUS
+Series	ASUS Vivobook Go 12
+Screen Size	11.6
+Color	Star Black
+Hard Disk Size	128 GB
+CPU Model	Celeron
+Ram Memory Installed Size	4 GB
+Operating System	Windows 11 S
+Card Description	Integrated
+CPU Speed	2.8 GHz

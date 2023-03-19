@@ -1,0 +1,10 @@
+Brand	ASUS
+Series	ROG Strix G15
+Screen Size	15.6 Inches
+Color	Gray
+Hard Disk Size	1 TB
+CPU Model	Ryzen 7
+Ram Memory Installed Size	16 GB
+Operating System	Windows 11 Home
+Card Description	GeForce RTX 3050
+Graphics Coprocessor	NVIDIA GeForce RTX 3050

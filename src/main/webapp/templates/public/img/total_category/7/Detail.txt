@@ -1,0 +1,10 @@
+Brand	ASUS
+Series	TUF Dash 15 (2022)
+Screen Size	15.6 Inches
+Color	Off Black
+Hard Disk Size	512 GB
+CPU Model	Core i7
+Ram Memory Installed Size	16 GB
+Operating System	Windows 11 Home
+Card Description	RTX 3060
+Graphics Coprocessor	NVIDIA GeForce RTX 3060

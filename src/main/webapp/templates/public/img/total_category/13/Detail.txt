@@ -1,0 +1,10 @@
+Brand	Lenovo
+Series	IdeaPad
+Screen Size	15.6 Inches
+Color	Gray
+Hard Disk Size	512 GB
+CPU Model	Core i3
+Ram Memory Installed Size	20 GB
+Operating System	Windows 11 Home
+Card Description	Integrated
+Graphics Coprocessor	Intel UHD Graphics

@@ -1,0 +1,10 @@
+Brand	Apple
+Series	MacBook pro
+Screen Size	16.2 Inches
+Hard Disk Size	2 TB
+CPU Model	ARM 7100
+Ram Memory Installed Size	64 GB
+Operating System	Mac OS
+Card Description	Integrated
+Graphics Coprocessor	M1 Max
+CPU Speed	3.2 GHz

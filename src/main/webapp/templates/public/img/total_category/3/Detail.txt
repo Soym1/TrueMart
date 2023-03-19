@@ -1,0 +1,10 @@
+Brand	Apple
+Model Name	MacBook Air
+Screen Size	13.6 Inches
+Color	Silver
+Hard Disk Size	512 GB
+CPU Model	Unknown
+Ram Memory Installed Size	8 GB
+Operating System	Mac OS
+Graphics Card Description	Integrated
+Graphics Coprocessor	Apple M2

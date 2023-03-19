@@ -1,0 +1,10 @@
+Brand	SAMSUNG
+Model Name	S22 Ultra
+Wireless Carrier	Unlocked
+Operating System	Android 12.0
+Cellular Technology	GSM, CDMA, HSPA, EVDO, LTE, 5G
+Memory Storage Capacity	128 GB
+Connectivity Technology	Bluetooth, Wi-Fi
+Color	Burgundy
+Screen Size	6.8 Inches
+Wireless network technology	GSM, CDMA, LTE

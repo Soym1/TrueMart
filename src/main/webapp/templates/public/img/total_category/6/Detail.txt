@@ -1,0 +1,10 @@
+Brand	ASUS
+Series	ROG Strix G16
+Screen Size	16 Inches
+Color	Eclipse Gray
+CPU Model	Intel Core i9
+Ram Memory Installed Size	16 GB
+Operating System	Windows 11 Home
+Card Description	Dedicated
+Graphics Coprocessor	NVIDIA GeForce RTX 4070
+CPU Speed	5.6 GHz
