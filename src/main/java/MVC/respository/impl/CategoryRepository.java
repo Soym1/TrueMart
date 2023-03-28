@@ -15,7 +15,7 @@ public class CategoryRepository implements ICategoryRepository {
     public List<Category> ListCate() {
         List<Category> categorysList = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select * from category order by id ;");
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
@@ -33,7 +33,7 @@ public class CategoryRepository implements ICategoryRepository {
     public int creat(String category_name) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into category(category_name) values\n" +
                             "(?)"
             );
@@ -49,7 +49,7 @@ public class CategoryRepository implements ICategoryRepository {
     public Category findAll(int id) {
         Category category = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select * from category where id = ?");
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -67,7 +67,7 @@ public class CategoryRepository implements ICategoryRepository {
     public int edit(Category category) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "UPDATE category\n" +
                             "SET category_name = ?" +
                             "WHERE id = ?;"
@@ -85,7 +85,7 @@ public class CategoryRepository implements ICategoryRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM category WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);
@@ -100,7 +100,7 @@ public class CategoryRepository implements ICategoryRepository {
     public int numAll() {
         int resuft = 0;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select count(id) as num from category;");
             if(resultSet.next()){
                 resuft = resultSet.getInt("num");

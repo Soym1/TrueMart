@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%@include file="/templates/public/inc/header.jsp"%>--%>
-
 <!--HORIZONTAL MENU-->
 <jsp:include page="/templates/public/inc/header.jsp"/>
 <div class="main-page-banner pb-50 off-white-bg">
@@ -80,7 +78,7 @@
             <!-- Slider Area Start Here -->
             <div class="col-md-9" id="slider-img">
                 <div class="row">
-                    <div class="products-tabs">
+                    <div class="products-tabs" style="width: 97%">
                         <!-- tab -->
                         <div id="tab125" class="tab-pane active">
                             <div class="products-slick slick-list-1" data-nav="#slick-nav-1">

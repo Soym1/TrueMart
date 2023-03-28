@@ -24,53 +24,85 @@ public class ListProductServlet extends HttpServlet {
         String ajaxHeader = request.getHeader("x-requested-with");
         List<Product> list;
         Map<Integer, String> listGson = new HashMap<>();
-//        if (request.getParameter("category") != null){
+        String type = null;
+        int page=1;
+        List<Integer> listPage = null;
+        String category = request.getParameter("category");
+        if (request.getParameter("type") == null){
+            type = "";
+        } else{
+            type = request.getParameter("type");
+        }
         if ("XMLHttpRequest".equals(ajaxHeader)) {
-            String type = request.getParameter("type");
-            String category = request.getParameter("category");
-            if (type.equals("search")){
-                System.out.println("type: "+type);
-                String[] listCategory = request.getParameterValues("listCategory[]");
+            if (type.equals("search")) {
+                String[] listCategory = new String[0];
+                if (category != null){listCategory = category.split(",");}
                 Double minPrice = Double.parseDouble(request.getParameter("minPrice"));
                 Double maxPrice = Double.parseDouble(request.getParameter("maxPrice"));
-                int page = Integer.parseInt(request.getParameter("page"));
-                list = new Service().getProductBySearch(type,listCategory,minPrice,maxPrice,page);
-            } else{
+                if (request.getParameter("page") != null){page = Integer.parseInt(request.getParameter("page"));}
+                int amount = Integer.parseInt(request.getParameter("amount"));
+                Map<List<Product>, Integer> result = new Service().getProductBySearch(type, listCategory, minPrice, maxPrice, page, amount);
+                Map<String, Object> listMap = new HashMap<>();
+                result.forEach((K,V) ->{
+                    listMap.put("ListProduct",K);
+                    if (V % amount == 0) {
+                        listMap.put("lastPage", V / amount);
+                    } else {
+                        listMap.put("lastPage", (V / amount) + 1);
+                    }
+                });
+                listMap.put("page",page);
+                Gson gson = new Gson();
+                response.getWriter().write(gson.toJson(listMap));
+            } else {
+                Map<String, List<Product>> listMap = new HashMap<>();
                 list = new Service().getProductByCategory(type, category);
+                listMap.put("ListProduct", list);
+                Gson gson = new Gson();
+                response.getWriter().write(gson.toJson(listMap));
             }
-            Map<String, List<Product>> listMap = new HashMap<>();
-            listMap.put("Product", list);
-            Gson gson = new Gson();
-            response.getWriter().write(gson.toJson(listMap));
-//            Gson gson = new Gson();
-//            list.forEach(element -> {
-//                listGson.put(element.getId(),gson.toJson(element));
-//            });
-//            response.getWriter().write(gson.toJson(list));
         } else {
-            if (request.getParameter("category") != null){
-                 list = new Service().getProductByCategory("",request.getParameter("category"));
-                 request.setAttribute("category",request.getParameter("category"));
-            }else{
-                 list = new Service().getProductByCategory("",null);
-            }
             List<Category> listCate = iCategoryService.ListCate();
+            list = new Service().getProductByCategory(type, category);
+            // Send back listProduct and listCategory to JSP
+            request.setAttribute("category", category);
             request.setAttribute("ListP", list);
             request.setAttribute("ListC", listCate);
             request.getRequestDispatcher("/view/public/store.jsp").forward(request, response);
         }
 
+        // Request from AJAX
+//        if ("XMLHttpRequest".equals(ajaxHeader)) {
+//            // Request data for list Product by category, minPrice, maxPrice and Current page
+//            String type = request.getParameter("type");
+//            String category = request.getParameter("category");
+//            if (category != null) {
+//                System.out.println("category = null");
+//                list = new Service().getProductByCategory(type, category);
+//            } else {
+//                System.out.println("category != null");
+//                String[] listCategory = request.getParameterValues("listCategory[]");
+//                Double minPrice = Double.parseDouble(request.getParameter("minPrice"));
+//                Double maxPrice = Double.parseDouble(request.getParameter("maxPrice"));
+//                int page = Integer.parseInt(request.getParameter("page"));
+//                int amount = Integer.parseInt(request.getParameter("amount"));
+//                list = new Service().getProductBySearch(type, listCategory, minPrice, maxPrice, page, amount);
+//            }
+//            // Send back data to JSP
+//            Map<String, List<Product>> listMap = new HashMap<>();
+//            listMap.put("ListP", list);
+//            Gson gson = new Gson();
+//            response.getWriter().write(gson.toJson(listMap));
 //        } else {
-//            List<Product> list = new Service().getAllProduct();
+//            // Request from JSP
+//            list = new Service().getProductByCategory("", request.getParameter("category"));
 //            List<Category> listCate = iCategoryService.ListCate();
-//            request.setAttribute("ListC", listCate);
+//            // Send back listProduct and listCategory to JSP
+//            request.setAttribute("category", request.getParameter("category"));
 //            request.setAttribute("ListP", list);
-//            // set data to jsp
+//            request.setAttribute("ListC", listCate);
+//            request.setAttribute("test","chay dau");
 //            request.getRequestDispatcher("/view/public/store.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
 }
+

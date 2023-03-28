@@ -14,7 +14,7 @@ public class ReviewRepository implements IReviewRepository {
     public List<Review> getReviews(int pid) {
         ArrayList<Review> listReviews = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select * from review where product_id = ?;");
             preparedStatement.setInt(1,pid);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -39,7 +39,7 @@ public class ReviewRepository implements IReviewRepository {
     public void addRe(Review reviewmain) {
         int result = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into review(user_review,email_review,product_id,content,rating,post_date) values\n" +
                             "(?,?,?,?,?,?)");
             preparedStatement.setString(1,reviewmain.getUser_review());
@@ -58,7 +58,7 @@ public class ReviewRepository implements IReviewRepository {
     public ArrayList<Review> listReviewShop(Shop shop) {
         ArrayList<Review> listReviews = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select * from review \n" +
                             "inner join product\n" +
                             "on review.product_id = product.id\n" +
@@ -88,7 +88,7 @@ public class ReviewRepository implements IReviewRepository {
     public ArrayList<Review> listAll() {
         ArrayList<Review> listReviews = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "select * from review \n" +
                             "inner join product\n" +
@@ -114,7 +114,7 @@ public class ReviewRepository implements IReviewRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM review WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);

@@ -1,5 +1,5 @@
 package MVC.respository;
 
-public interface IinvoiceRepository {
+public interface ImpInvoiceRepository {
     int numAll();
 }

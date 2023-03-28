@@ -14,7 +14,7 @@ public class ContactRepository implements IContactRepository {
     public int add(Contact contact) {
         int result = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into contact(fullname,email,website,subject,content) values\n" +
                             "(?,?,?,?,?);");
             preparedStatement.setString(1,contact.getFullname());
@@ -33,7 +33,7 @@ public class ContactRepository implements IContactRepository {
     public ArrayList<Contact> listAll() {
         ArrayList<Contact> listContact = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "select * from contact;");
             while (resultSet.next()){
@@ -56,7 +56,7 @@ public class ContactRepository implements IContactRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM contact WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);

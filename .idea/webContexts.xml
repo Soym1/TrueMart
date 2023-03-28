@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/templates/admin/inc/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/templates/admin/inc" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/templates/public/CSS" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/templates/public/inc/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/templates/public/inc" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/admin/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/admin/review/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/admin/review" />

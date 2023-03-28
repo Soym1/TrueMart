@@ -16,7 +16,7 @@ public class UsersRepository implements IUsersRepository {
     public List<Users> findAll() {
         List<Users> usersList = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select * from users;");
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
@@ -41,7 +41,7 @@ public class UsersRepository implements IUsersRepository {
     public int creat(Users users) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into users(username, password, role, firstname, lastname , email, phonenumber, address) values\n" +
                             "(?, ?, ?, ?, ?, ?, ?, ?)"
             );
@@ -64,7 +64,7 @@ public class UsersRepository implements IUsersRepository {
     public Users findAll(int id) {
         Users users = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select * from users where id = ?");
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -89,7 +89,7 @@ public class UsersRepository implements IUsersRepository {
     public int edit(Users users) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "UPDATE users\n" +
                             "SET password = ?, firstname = ?, lastname = ?, email = ?, phonenumber = ?, address = ?\n" +
                             "WHERE id = ?;"
@@ -112,7 +112,7 @@ public class UsersRepository implements IUsersRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM users WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);
@@ -127,7 +127,7 @@ public class UsersRepository implements IUsersRepository {
     public List<Users> listUserNS() {
         List<Users> listUserNS = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select  users.id, username from shop \n" +
                     "right join users\n" +
                     "on shop.id_users = users.id where shop.id is null && role = \"Producter\";\n");
@@ -147,7 +147,7 @@ public class UsersRepository implements IUsersRepository {
     public Users kiemtra(String username, String password) {
         Users users = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select * from users where username = ? AND password = ?;");
             preparedStatement.setString(1,username);
             preparedStatement.setString(2,password);
@@ -172,7 +172,7 @@ public class UsersRepository implements IUsersRepository {
     public int numAll() {
         int resuft = 0;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select count(id) as num from users;");
             if(resultSet.next()){
                 resuft = resultSet.getInt("num");

@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="/templates/public/img/favicon.ico">
@@ -38,8 +37,8 @@
     <link rel="stylesheet" href="/templates/public/CSS/responsive.css">
 
     <!-- Modernizer js -->
-    <script src="/templates/public/js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
             crossorigin="anonymous"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
@@ -106,20 +105,30 @@
 
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
-                    <div class="header-ctn">
-
-                        <!-- /Cart -->
-                        <!-- Wishlist -->
-                        <c:if test="${UserLogin == null}">
-                            <div style="color: white;">
-                                <div style="text-align: center">
-                                    <i class="fa fa-user-o"></i>
-                                </div>
-                                <span><a href="/Authed?actionUser=login" style="color: white;font-size: 14px">Login </a>|<a href="/register" style="color: white;font-size: 14px"> Register</a></span>
-
+                    <c:if test="${UserLogin == null}">
+                    <div class="header-ctn" style="float: right; padding: 15px 0;">
+                        <div style="color: white;">
+                            <div style="text-align: center">
+                                <i class="fa fa-user-o"></i>
                             </div>
+                            <span><a href="/Authed?actionUser=login" style="color: white;font-size: 14px">Login </a>|<a
+                                    href="/register" style="color: white;font-size: 14px"> Register</a></span>
+                            <div id="menu-toggle">
+                                <a href="">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
+                        </div>
                         </c:if>
                         <c:if test="${UserLogin != null}">
+                        <div class="header-ctn">
+                            <div class="user">
+                                <a class="${userId}"}>
+                                    <i class="fa fa-user"></i>
+                                    <span class="${username}">Hello, ${username}</span>
+                                </a>
+                            </div>
                             <!-- Cart -->
                             <div class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -144,29 +153,30 @@
                             <div>
                                 <a href="/Authed?actionUser=logout">
                                     <i class="fa fa-sign-out"></i>
-                                    <span>Logout !!!</span>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                            <div id="menu-toggle">
+                                <a href="">
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
                                 </a>
                             </div>
                             <%@include file="/view/public/chat.jsp" %>
-                        </c:if>
-                        <!-- /Wishlist -->
-                        <!-- Menu Toogle -->
-                        <div id="menu-toggle">
-                            <a>
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
+                            </c:if>
+                            <!-- /Wishlist -->
+                            <!-- Menu Toogle -->
+
+                            <!-- /Menu Toogle -->
                         </div>
-                        <!-- /Menu Toogle -->
                     </div>
+                    <!-- /ACCOUNT -->
                 </div>
-                <!-- /ACCOUNT -->
+                <!-- row -->
             </div>
-            <!-- row -->
+            <!-- container -->
         </div>
-        <!-- container -->
-    </div>
-    <!-- /MAIN HEADER -->
+        <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
 
@@ -187,7 +197,7 @@
                 <li><a href="">About us</a></li>
                 <li><a href="/contact">contact us</a></li>
                 <c:if test="${UserLogin.role.equals('Producter')}">
-                <li><a href="/shop">shop details</a></li>
+                    <li><a href="/shop">shop details</a></li>
                 </c:if>
             </ul>
             <!-- /NAV -->
@@ -225,9 +235,9 @@
     <!-- Container End -->
 </div>
 <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
         let username = "${UserLogin.username}";
-        if(${UserLogin != null}) {
+        if (${UserLogin != null}) {
             $.ajax({
                 url: '/Cart',
                 method: 'POST',
@@ -236,10 +246,10 @@
                     type: "get-cart",
                     username: username
                 },
-                success: function(data){
+                success: function (data) {
                     loadCartData(data);
                 },
-                error: function (){
+                error: function () {
                     alert('Có lỗi xảy ra');
                 }
             });

@@ -11,10 +11,6 @@
 </style>
 <body>
 <div>
-    <script>
-        let username = "${username}";
-        let userID = "${userId}";
-    </script>
     <!-- Chatbox bubble -->
     <div class="chat-popup" id="myForm">
         <button id="button-message" type="button" class="btn popup" onclick="openForm()"><img class="logo-popup"
@@ -69,12 +65,29 @@
                         <div><span></span> <span></span> <span></span> <span class="n">Someone</span> is typing...</div>
                     </div>
                     <div class="chat-box-footer">
-                        <textarea id="chat_input" placeholder="Enter your message here..."></textarea>
+                        <div id="chat-input">
+                            <div class="chat-box-file-upload">
+                            </div>
+                            <div id="chat-box-input">
+                                <textarea id="chat_input_text" placeholder="Enter your message here..."></textarea>
+                            </div>
+                        </div>
                         <button id="send" onclick="sendMessage()" value="Send Message">
                             <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                 <path fill="#006ae3" d="M2,21L23,12L2,3V10L17,12L2,14V21Z"/>
                             </svg>
                         </button>
+                    </div>
+                    <div class="sub-chat-btn">
+                        <input id="attach-btn" type="file" multiple style="display: none">
+                        <div class="sub-btn" id="img-upload">
+                            <label for="attach-btn"><img class="img-btn"
+                                                         src="/templates/public/img/icon/img-box-svgrepo-com.svg"></label>
+                        </div>
+                        <div class="sub-btn" id="file-upload">
+                            <label for="attach-btn"><img class="img-btn"
+                                                         src="/templates/public/img/icon/attach-svgrepo-com.svg"></label>
+                        </div>
                     </div>
                 </div>
                 <div class="right-area">
@@ -90,15 +103,59 @@
                         </div>
                     </div>
                     <div id="list-chat">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div id="myModal" class="modal-chat">
+        <div class="modal-content-chat">
+        <%--            <div class="mySlides">--%>
+<%--                <div class="numbertext">1 / 4</div>--%>
+<%--                <img src="img_nature_wide.jpg" style="width:100%">--%>
+<%--            </div>--%>
+
+<%--            <div class="mySlides">--%>
+<%--                <div class="numbertext">2 / 4</div>--%>
+<%--                <img src="img_snow_wide.jpg" style="width:100%">--%>
+<%--            </div>--%>
+
+<%--            <div class="mySlides">--%>
+<%--                <div class="numbertext">3 / 4</div>--%>
+<%--                <img src="img_mountains_wide.jpg" style="width:100%">--%>
+<%--            </div>--%>
+
+<%--            <div class="mySlides">--%>
+<%--                <div class="numbertext">4 / 4</div>--%>
+<%--                <img src="img_lights_wide.jpg" style="width:100%">--%>
+<%--            </div>--%>
+
+<%--            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>--%>
+<%--            <a class="next" onclick="plusSlides(1)">&#10095;</a>--%>
+
+<%--            <div class="caption-container">--%>
+<%--                <p id="caption"></p>--%>
+<%--            </div>--%>
+
+<%--            <div class="column">--%>
+<%--                <img class="demo cursor" src="img_nature_wide.jpg" style="width:100%" onclick="currentSlide(1)" alt="Nature and sunrise">--%>
+<%--            </div>--%>
+<%--            <div class="column">--%>
+<%--                <img class="demo cursor" src="img_snow_wide.jpg" style="width:100%" onclick="currentSlide(2)" alt="Snow">--%>
+<%--            </div>--%>
+<%--            <div class="column">--%>
+<%--                <img class="demo cursor" src="img_mountains_wide.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">--%>
+<%--            </div>--%>
+<%--            <div class="column">--%>
+<%--                <img class="demo cursor" src="img_lights_wide.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">--%>
+<%--            </div>--%>
+        </div>
+    </div>
+
 </div>
 <%--<script src="/view/chat-box.js"></script>--%>
 <script src="/templates/public/js/chatbox.js"></script>
-<script src="/templates/public/js/handlesocket.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+// Shopping Cart
 function loadCartData(data){
     let listProduct = Object.keys(data);
     $(".cart-list").html('');
@@ -28,13 +29,17 @@ function loadCartData(data){
 
 $(document).ready(function () {
     function getListProduct(position, category) {
+        // Get data from db for home page
         $.ajax({
             url: "/ListProduct",
-            method: "POST",
+            method: "GET",
             data: {"category": category, type: position},
             dataType: "JSON",
             success: function (response) {
-                newProduct(position, response.Product);
+                newProduct(position, response.ListProduct);
+            },
+            error: function (){
+                alert("Loi du lieu tra ve");
             }
         })
     }
@@ -59,11 +64,11 @@ $(document).ready(function () {
         }
     };
     getListProduct("new", "Computers & Laptops");
-    $("#category-list-new-product").click(event => {
+    $("#category-list-new-product a").click(event => {
         getListProduct("new", event.target.text)
     });
     getListProduct("top-selling", "Computers & Laptops");
-    $("#category-list-top-selling").click(event => {
+    $("#category-list-top-selling a").click(event => {
         getListProduct("top-selling", event.target.text)
     });
     getListProduct("suggestion", "");
@@ -186,28 +191,32 @@ $(document).ready(function () {
             }
         });
     });
-    function searchProduct(type, listCategory, minPrice, maxPrice, page) {
+    function searchProduct(type, category, minPrice, maxPrice, amount) {
         $.ajax({
-            url: "/ListProduct",
+            url: category,
             method: "GET",
             dataType: "JSON",
             data: {
                 type: type,
-                listCategory: listCategory,
                 minPrice: minPrice,
                 maxPrice: maxPrice,
-                page: page
+                amount: amount
             },
-            success: function (data) {
-                handleSearch(data.Product);
+            success: function (data){
+                handleSearch(data);
             }
         })
     }
-
-    function handleSearch(data) {
+    window.addEventListener('popstate', function(event) {
+        var state = event.state;
+        if (!state){
+            searchProduct("search",window.location.href,$("#price-min").val(), $("#price-max").val(),$(".store-sort .input-select").val());
+        }
+    });
+    function handleSearch(data,page) {
         $("#show-product").html('');
-        data.forEach(element => {
-            $("#show-product").append('<div class="col-md-4 col-xs-6"> <div class="product category-' + element.id +
+        data.ListProduct.forEach(element => {
+            $("#show-product").append('<div class="col-md-3 col-xs-6"> <div class="product category-' + element.id +
                 '"> <a href="/ProductDetail?id=' + element.id + '"> <div class="product-img store-img"> ' +
                 '<img src="/templates/public/img/total_category/' + element.id + '/' + element.image + '" alt="' + element.name + '' +
                 '"style="position: absolute; bottom: 0; max-height: 100%; padding:10px"> <div class="product-label"> </div> ' +
@@ -218,18 +227,67 @@ $(document).ready(function () {
                 '<i class="fa fa-star"></i> <i class="fa fa-star"></i> </div> </div> <div class="add-to-cart"> <button ' +
                 'class="add-to-cart-btn ' + element.id + '"><i class="fa fa-shopping-cart"></i> add to cart </button> </div> </a> </div> </div>')
         })
+        // Pagination
+        $(".store-pagination").html('');
+        alert(data.lastPage)
+        if (parseInt(data.page) <= 3){
+            let i = 1;
+            while ((i <= data.lastPage) && (i <= 5)){
+                if (i != parseInt(data.page)){
+                    $(".store-pagination").append('<li>'+i+'</li>')
+                } else {
+                    $(".store-pagination").append('<li class="active">'+i+'</li>')
+                }
+                i++;
+            }
+        } else if ( (parseInt(data.lastPage) - parseInt(data.page)) <= 2 ){
+            let i = data.lastPage - 4;
+            while (i != data.lastPage+1){
+                if (i != parseInt(data.page)){
+                    $(".store-pagination").append('<li>'+i+'</li>')
+                } else {
+                    $(".store-pagination").append('<li class="active">'+i+'</li>')
+                }
+                i++;
+            }
+        } else {
+            let i = data.page - 2;
+            while (i != (parseInt(data.page) +3)){
+                if (i != parseInt(data.page)){
+                    $(".store-pagination").append('<li>'+i+'</li>')
+                } else {
+                    $(".store-pagination").append('<li class="active">'+i+'</li>')
+                }
+                i++;
+            }
+        }
     }
 
     function checkCategory(minPrice, maxPrice, page) {
         var list = [];
+        category = "/ListProduct"
+        subcategory = ""
+        let amount = $(".store-sort .input-select").val();
         $(".input-checkbox label").each(function () {
             if ($(this).hasClass("checked")) {
-                list.push($(this).text().trim());
-            } else {
-                list.push("");
+                if (subcategory !== ""){
+                    subcategory += "%2C" + $(this).text().trim().replaceAll(" ","%20").replaceAll("&","%26");
+                } else {
+                    subcategory += "?category=" + $(this).text().trim().replaceAll(" ","%20").replaceAll("&","%26")
+                }
             }
         });
-        searchProduct("search", list, minPrice, maxPrice, page);
+        if (page != "1"){
+            if (subcategory === ""){
+                subcategory += "?page=" + page;
+            } else {
+                subcategory += "&page=" + page
+            }
+        }
+        category += subcategory;
+        window.history.pushState("","",category);
+        $(".store-qty").text("Showing "+amount+" products");
+        searchProduct("search", category, minPrice, maxPrice, amount);
     }
 
     $(".input-checkbox label").on("click", function () {
@@ -238,43 +296,29 @@ $(document).ready(function () {
         } else {
             $(this).removeClass("checked");
         }
-        checkCategory($("#price-min").val(), $("#price-max").val(), 1)
-        let count = 1;
-        let page = parseInt($(this).text());
-        $(".store-pagination li").each(function () {
-            $(this).text(count);
-            count += 1;
-        })
-    })
-    var priceSlider = document.getElementById('price-slider');
-    priceSlider.noUiSlider.on('update', function (values, handle) {
-        checkCategory(values[0], values[1], 1);
-        let count = 1;
-        let page = parseInt($(this).text());
-        $(".store-pagination li").each(function () {
-            $(this).text(count);
-            count += 1;
-        })
-    });
-
-    $(".store-pagination li").click(function () {
-        document.documentElement.scrollTop = 0;
         $(".store-pagination").find(".active").removeClass();
-        checkCategory($("#price-min").val(), $("#price-max").val(), $(this).text())
-        if (parseInt($(this).text()) >= parseInt("4")) {
-            let count = -1;
-            let page = parseInt($(this).text());
-            $(".store-pagination li").each(function () {
-                $(this).text(page + count);
-                count += 1;
-            })
-        }else{
-            let count = 1;
-            let page = parseInt($(this).text());
-            $(".store-pagination li").each(function () {
-                $(this).text(count);
-                count += 1;
-            })
+        $(".store-pagination li:first").addClass("active");
+        checkCategory($("#price-min").val(), $("#price-max").val(), 1)
+    })
+    $("#price-slider").click(function (){
+        var priceSlider = document.getElementById('price-slider');
+        priceSlider.noUiSlider.on('update', function (values, handle) {
+            checkCategory(values[0], values[1], 1);
+        });
+    });
+    $(".store-pagination").click(function () {
+        if (event.target.tagName.toLowerCase() === "li"){
+            document.documentElement.scrollTop = 0;
+            let page = $(event.target).text();
+            checkCategory($("#price-min").val(), $("#price-max").val(),page)
         }
     })
+    $(".store-sort .input-select").change(function (){
+        checkCategory($("#price-min").val(), $("#price-max").val(), $(".store-pagination li.active").text());
+    })
+    $(window).load(function (){
+        if (window.location.href.indexOf("ListProduct") > -1 ){
+            searchProduct("search",window.location.href,$("#price-min").val(), $("#price-max").val(),$(".store-sort .input-select").val());
+        }
+    });
 })

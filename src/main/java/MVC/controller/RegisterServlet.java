@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        request.getRequestDispatcher("/view/public/resigter.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/public/registerUser.jsp").forward(request,response);
     }
 
     @Override
@@ -64,6 +64,7 @@ public class RegisterServlet extends HttpServlet {
                 java.sql.Date sqlDate = new java.sql.Date(timeInMillis);
 
                 Part filePart = request.getPart("image");
+                System.out.println("filePart: "+filePart);
                 final String dirPathName = request.getServletContext().getRealPath("/templates/img");
                 File dirFile = new File(dirPathName);
                 if(!dirFile.exists()){
@@ -102,7 +103,7 @@ public class RegisterServlet extends HttpServlet {
                 for (Users ktu: usersList) {
                     if(username.equals(ktu.getUsername())){
                         request.setAttribute("users",users);
-                        request.getRequestDispatcher("/view/public/resigter.jsp?err=2").forward(request,response);
+                        request.getRequestDispatcher("/view/public/registerUser.jsp?err=2").forward(request,response);
                     }
                 }
                 if(iUsersService.creat(users) > 0){
@@ -116,7 +117,7 @@ public class RegisterServlet extends HttpServlet {
                 }
                 else{
                     request.setAttribute("users",users);
-                    request.getRequestDispatcher("/view/public/resigter.jsp?err=1").forward(request,response);
+                    request.getRequestDispatcher("/view/public/registerUser.jsp?err=1").forward(request,response);
                 }
                 break;
         }

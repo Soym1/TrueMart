@@ -2,8 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/templates/public/inc/header.jsp"%>
 
-
-
 <!-- Register Account Start -->
 
 <!-- Start Product Home Page -->

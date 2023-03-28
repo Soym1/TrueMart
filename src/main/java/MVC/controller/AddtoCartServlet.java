@@ -1,26 +1,17 @@
 package MVC.controller;
 
 import MVC.model.Cart;
-import MVC.model.Product;
-import MVC.respository.impl.BaseRespository;
-import MVC.service.Impl.Service;
-import javafx.print.Printer;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.awt.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @WebServlet(name = "AddtoCartServlet", value = "/AddCart")
 public class AddtoCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         ArrayList<Cart> cartList = new ArrayList<>();
         int id = Integer.parseInt(request.getParameter("id"));

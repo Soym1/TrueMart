@@ -16,7 +16,7 @@ public class ProductRepository implements IProductRepository {
     public List<Product> productList() {
         List<Product> productList = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "select product.id , name, category_id, shop_id, image, price, description, details , shop_name , category_name\n" +
                             "from product \n" +
@@ -46,7 +46,7 @@ public class ProductRepository implements IProductRepository {
     public int creat(Product product) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "INSERT INTO product ( Name, brand, category_id, shop_id, image, price, description, details, quantity) VALUES \n" +
                             "(?, '', ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, product.getName());
@@ -68,7 +68,7 @@ public class ProductRepository implements IProductRepository {
     public Product findAll(int id) {
         Product product = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select product.id , name, category_id, shop_id, image, price, description, details , shop_name ,quantity , category_name\n" +
                             "from product \n" +
                             "inner join category\n" +
@@ -99,7 +99,7 @@ public class ProductRepository implements IProductRepository {
     public int edit(Product product) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "UPDATE product\n" +
                             "SET name = ?, category_id = ?, image = ?, price = ?, description = ?, details = ?,quantity = ?\n" +
                             "WHERE id = ?;"
@@ -123,7 +123,7 @@ public class ProductRepository implements IProductRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM product WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);
@@ -138,7 +138,7 @@ public class ProductRepository implements IProductRepository {
     public ArrayList<Product> productShop(int id) {
         ArrayList<Product> listP = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select product.id , name, category_id, shop_id, image, price, description, details , shop_name , category_name\n" +
                             "from product \n" +
                             "inner join category\n" +
@@ -170,7 +170,7 @@ public class ProductRepository implements IProductRepository {
     public Product newPro() {
         Product product = null;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "select * from product order by id desc limit 0,1;");
             if (resultSet.next()){
@@ -197,7 +197,7 @@ public class ProductRepository implements IProductRepository {
     public int numAll() {
         int resuft = 0;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select count(id) as num from product;");
             if(resultSet.next()){
                 resuft = resultSet.getInt("num");
@@ -212,7 +212,7 @@ public class ProductRepository implements IProductRepository {
     public ArrayList<Product> search(String search) {
         ArrayList<Product> listP = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select product.id , name, category_id, shop_id, image, price, description, details , shop_name , category_name\n" +
                             "from product \n" +
                             "inner join category\n" +
@@ -244,7 +244,7 @@ public class ProductRepository implements IProductRepository {
     public ArrayList<Product> productList(int offset) {
         ArrayList<Product> productList = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select product.id , name, category_id, shop_id, image, price, description, details , shop_name , category_name\n" +
                             "from product \n" +
                             "inner join category\n" +

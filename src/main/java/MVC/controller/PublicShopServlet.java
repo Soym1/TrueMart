@@ -56,7 +56,7 @@ public class PublicShopServlet extends HttpServlet {
                 request.setAttribute("numpro",numpro);
                 request.setAttribute("listPS",listPS);
                 request.setAttribute("shop",shop);
-                request.getRequestDispatcher("/view/public/productHomepage.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/public/myShop.jsp").forward(request,response);
                 break;
             default:
                 HttpSession session = request.getSession();
@@ -70,7 +70,7 @@ public class PublicShopServlet extends HttpServlet {
                 request.setAttribute("numpro",numpro);
                 request.setAttribute("listPS",listPS);
                 request.setAttribute("shop",shop);
-                request.getRequestDispatcher("/view/public/productHomepage.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/public/myShop.jsp").forward(request,response);
                 break;
         }
     }
@@ -105,10 +105,10 @@ public class PublicShopServlet extends HttpServlet {
                 id_cate = Integer.parseInt(request.getParameter("category"));
                 category = new Category(id_cate,null);
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
-
+                System.out.println("Chay vao day");
 
                 Part filePart = request.getPart("image");
-
+                System.out.println(filePart);
 
                 String fileName = FileUtil.getName(filePart);
                 String image = FileUtil.rename(fileName);
@@ -139,7 +139,7 @@ public class PublicShopServlet extends HttpServlet {
                 request.setAttribute("listPS",iProductService.productShop(shop.getId()));
                 System.out.println(iProductService.productShop(shop.getId()).size());
                 request.setAttribute("shop",shop);
-                request.getRequestDispatcher("/view/public/productHomepage.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/public/myShop.jsp").forward(request,response);
                 break;
         }
     }

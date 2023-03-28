@@ -3,26 +3,29 @@ package MVC.model;
 import java.util.Date;
 
 public class Messages {
-    private int id_message;
+    private int id;
     private int sender_id;
-    private int receiver_id;
-    private String message;
-    private Date summit_date;
-
-    public Messages(int id_message, int sender_id, int receiver_id, String message, Date summit_date) {
-        this.id_message = id_message;
+    private int conversation;
+    private String type_mess;
+    private String name_mess;
+    private String messages;
+    private Date date_send;
+    public Messages(int id, int sender_id, int conversation, String type_mess, String name_mess, String messages, Date date_send) {
+        this.id = id;
         this.sender_id = sender_id;
-        this.receiver_id = receiver_id;
-        this.message = message;
-        this.summit_date = summit_date;
+        this.conversation = conversation;
+        this.type_mess = type_mess;
+        this.name_mess = name_mess;
+        this.messages = messages;
+        this.date_send = date_send;
     }
 
-    public int getId_message() {
-        return id_message;
+    public int getId() {
+        return id;
     }
 
-    public void setId_message(int id_message) {
-        this.id_message = id_message;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSender_id() {
@@ -33,33 +36,44 @@ public class Messages {
         this.sender_id = sender_id;
     }
 
-    public int getReceiver_id() {
-        return receiver_id;
+    public int getConversation() {
+        return conversation;
     }
 
-    public void setReceiver_id(int receiver_id) {
-        this.receiver_id = receiver_id;
+    public void setConversation(int conversation) {
+        this.conversation = conversation;
     }
 
-    public String getMessage() {
-        return message;
+    public String getType_mess() {
+        return type_mess;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setType_mess(String type_mess) {
+        this.type_mess = type_mess;
     }
 
-    public Date getSummit_date() {
-        return summit_date;
+    public String getName_mess() {
+        return name_mess;
     }
 
-    public void setSummit_date(Date summit_date) {
-        this.summit_date = summit_date;
+    public void setName_mess(String name_mess) {
+        this.name_mess = name_mess;
     }
 
-    @Override
-    public String toString() {
-        return "{\"sender\":\"" + sender_id + "\",\"receiver\":\"" + receiver_id + "\",\"message\":\"" + message +"\",\"summit_date\":\"" + summit_date + "\"}";
+    public String getMessages() {
+        return messages;
+    }
+
+    public void setMessages(String messages) {
+        this.messages = messages;
+    }
+
+    public Date getDate_send() {
+        return date_send;
+    }
+
+    public void setDate_send(Date date_send) {
+        this.date_send = date_send;
     }
 }
 

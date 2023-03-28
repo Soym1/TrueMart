@@ -16,7 +16,7 @@ public class ShopRepository implements IShopRepository {
     public List<Shop> listAll() {
         List<Shop> listShop = new ArrayList<>();
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select shop.id, id_users, shop_name, shop.address, username, shopper_details_id, avatar, category  from shop \n" +
                     "inner join users\n" +
                     "on shop.id_users = users.id\n" +
@@ -46,7 +46,7 @@ public class ShopRepository implements IShopRepository {
     public int creat(Shop shop) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into shop(id_users, shop_name, address) values\n" +
                             "(?, ?, ?);"
             );
@@ -64,7 +64,7 @@ public class ShopRepository implements IShopRepository {
     public Shop find(int id) {
         Shop shop = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select shop.id, id_users, shop_name, shop.address, username from shop \n" +
                             "inner join users\n" +
                             "on shop.id_users = users.id where shop.id = ?;");
@@ -88,7 +88,7 @@ public class ShopRepository implements IShopRepository {
     public int edit(Shop shop) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "UPDATE shop\n" +
                             "SET shop_name = ?, address = ?\n" +
                             "WHERE id = ?;"
@@ -107,7 +107,7 @@ public class ShopRepository implements IShopRepository {
     public int del(int id) {
         int reuslt = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "DELETE FROM shop WHERE id = ?;"
             );
             preparedStatement.setInt(1,id);
@@ -122,7 +122,7 @@ public class ShopRepository implements IShopRepository {
     public Shop getShop(int id) {
         Shop shop = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select shop.id, id_users, shop_name, shop.address, username, shopper_details_id, shopper_details.email, shopper_details.phonenumber, shopper_details.address, category, quantity, date_created, avatar from shop\n" +
                             "inner join users\n" +
                             "on shop.id_users = users.id\n" +
@@ -152,7 +152,7 @@ public class ShopRepository implements IShopRepository {
         Shop shop = null;
         System.out.println("id ne"+ id);
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select shop.id, id_users, shop_name, shop.address, username, shopper_details_id, shopper_details.email, shopper_details.phonenumber, shopper_details.address, category, quantity, date_created, avatar from shop\n" +
                             "inner join users\n" +
                             "on shop.id_users = users.id\n" +
@@ -182,7 +182,7 @@ public class ShopRepository implements IShopRepository {
     public int addshopdetal(Shopper_Details shopper_details) {
         int result = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into shopper_details(email,phonenumber,address,category,quantity,date_created,avatar) values" +
                             "(?,?,?,?,?,?,?);");
             System.out.println(shopper_details.getEmail() + shopper_details.getPhonenumber() + shopper_details.getAddress() + shopper_details.getCategory()+shopper_details.getQuantity() + shopper_details.getDate_created() + shopper_details.getAvatar() );
@@ -204,7 +204,7 @@ public class ShopRepository implements IShopRepository {
     public Shopper_Details getShopdetails() {
         Shopper_Details shopper_details = null;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("select * from shopper_details order by id desc limit 0,1;");
             if (resultSet.next()){
                 int id = resultSet.getInt(1);
@@ -227,7 +227,7 @@ public class ShopRepository implements IShopRepository {
     public void addshop(Shop shop) {
         int result = 0;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "insert into shop(id_users,shop_name,shopper_details_id, address) values\n" +
                             "(?,?,?,?)");
             preparedStatement.setInt(1,shop.getUsers().getId());
@@ -244,7 +244,7 @@ public class ShopRepository implements IShopRepository {
     public Shop getShopU(int id) {
         Shop shop = null;
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select shop.id, id_users, shop_name, shop.address, username, shopper_details_id, shopper_details.email, shopper_details.phonenumber, shopper_details.address, category, quantity, date_created, avatar from shop\n" +
                             "inner join users\n" +
                             "on shop.id_users = users.id\n" +
@@ -273,7 +273,7 @@ public class ShopRepository implements IShopRepository {
     public int countItems() {
         int a = 0;
         try {
-            Statement statement = BaseRespository.getConnection().createStatement();
+            Statement statement = BaseRepository.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT COUNT(id) as tong FROM shop");
             if(resultSet.next()){
@@ -289,7 +289,7 @@ public class ShopRepository implements IShopRepository {
     public List<Shop> listAll(int offset) {
         List<Shop> listShop = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = BaseRespository.getConnection().prepareStatement(
+            PreparedStatement preparedStatement = BaseRepository.getConnection().prepareStatement(
                     "select shop.id, id_users, shop_name, shop.address, username, shopper_details_id, avatar, category  from shop \n" +
                             "inner join users\n" +
                             "on shop.id_users = users.id\n" +

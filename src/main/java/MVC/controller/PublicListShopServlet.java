@@ -30,7 +30,7 @@ public class PublicListShopServlet extends HttpServlet {
         request.setAttribute("numberOfPages", numberOfPages);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("listShop",listShop);
-        request.getRequestDispatcher("view/public/listShop.jsp").forward(request,response);
+        request.getRequestDispatcher("view/public/shop.jsp").forward(request,response);
         return;
     }
 
