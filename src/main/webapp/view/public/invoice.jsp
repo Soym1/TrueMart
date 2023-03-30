@@ -27,7 +27,7 @@
     <div class="download-btn">
         <button id="download-invoice">
             <i class="fa fa-download" aria-hidden="true">
-                <span class="download-span">Download voice</span>
+                <span class="download-span">Download invoice</span>
             </i>
         </button>
     </div>
@@ -39,7 +39,7 @@
                         <div class="col-sm-6">
                             <div class="mb-4 pull-left">
                                 <ul class="list list-unstyled mb-0 text-left">
-                                    <li><img src="/templates/public/img/header.png" id="img-header"></li>
+                                    <li><img src="/templates/public/img/header.png" id="img-header"alt="logo"> </li>
                                     <li>169-C, Technohub</li>
                                     <li>Dubai Silicon Oasis</li>
                                     <li>(+800) 123 456 789)</li>
@@ -152,7 +152,14 @@
 
     function generatePDF() {
         const element = document.getElementById("invoice");
-        html2pdf().from(element).save();
+        var opt = {
+            margin:       0,
+            filename:     ${result.code} +'.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+        };
+        html2pdf().set(opt).from(element).save();
     }
 
     button.addEventListener("click", generatePDF);

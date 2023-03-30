@@ -97,15 +97,20 @@ $(document).ready(function () {
                 },
                 success: function(data){
                     loadCartData(data);
+                    $("body").append('  <div class="alert alert-success alert-add-cart">\n' +
+                        '    <strong>Success!</strong> Product(s) addded to the cart.\n' +
+                        '  </div>')
+                    setTimeout(function (){
+                        $(".alert-add-cart").remove();
+                    },5000)
                 },
                 error: function (){
                     alert("You need to login first!!!")
-                }
+                },
             });
     }
     $(".add-to-cart-btn").click(function (){
         addCart($(this));
-        console.log("hehe"+this);
     });
     $("#store").click(function (){
         if (event.target.classList.contains("add-to-cart-btn")){
@@ -229,7 +234,6 @@ $(document).ready(function () {
         })
         // Pagination
         $(".store-pagination").html('');
-        alert(data.lastPage)
         if (parseInt(data.page) <= 3){
             let i = 1;
             while ((i <= data.lastPage) && (i <= 5)){

@@ -235,10 +235,12 @@ public class ChatRepository implements ImplChatRepository {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_SHOPNAME_BY_ID);
             preparedStatement.setInt(1,ID);
+            System.out.println(ID);
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 if (resultSet.getString("shop_name") != null){
-                    shopName = resultSet.getString("shop_name");
+                    shopName = resultSet.getString("shop_name").replace(" ","%20");
                 } else {
                     shopName = "";
                 }
@@ -268,6 +270,7 @@ public class ChatRepository implements ImplChatRepository {
     @Override
     public List<Integer> getListSearch(String search) {
         connection = BaseRepository.getConnection();
+        System.out.println("chay vao day "+search);
         List<Integer> listID = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_LIST_SEARCH);

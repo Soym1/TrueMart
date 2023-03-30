@@ -186,7 +186,7 @@
             <!-- /shop -->
 
             <!-- shop -->
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-6 3">
                 <div class="shop">
                     <div class="shop-img">
                         <img src="/templates/public/img/shop02.png" alt="">
@@ -889,7 +889,7 @@
 
             <div class="clearfix visible-sm visible-xs"></div>
 
-            <div class="col-md-4 col-xs-6">
+            <div class="col-md-4 col-xs-6 5">
                 <div class="section-title">
                     <div class="section-nav">
                         <div id="slick-nav-5" class="products-slick-nav"></div>

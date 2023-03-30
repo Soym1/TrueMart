@@ -64,13 +64,18 @@ public class AuthenticationServlet extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/index.jsp");
                     return;
                 }
-                String username = String.valueOf(req.getParameter("email"));
-                String password = String.valueOf(req.getParameter("password"));
+                String username = null;
+                String password = null;
+                if (req.getParameter("email") != null){
+                    username = String.valueOf(req.getParameter("email"));
+                }
+                if (req.getParameter("password") != null){
+                    password = String.valueOf(req.getParameter("password"));
+                }
                 if(password != null || !password.equals("")){
                     password = StringUtil.md5(password);
                 }
                 Users users = iUsersService.kiemtra(username,password);
-                int userId = Integer.parseInt(new ServiceChat().getIdByName(username));
                 if(users != null){
                     Shop shop = iShopService.getShop(users.getId());
                     if(users.getRole().equals("Producter") && shop == null ){
@@ -81,6 +86,7 @@ public class AuthenticationServlet extends HttpServlet {
                     if(shop != null){
                         session.setAttribute("shopLogin",shop);
                     }
+                    int userId = Integer.parseInt(new ServiceChat().getIdByName(username));
                     session.setAttribute("username",username);
                     session.setAttribute("password",password);
                     session.setAttribute("userId",userId);

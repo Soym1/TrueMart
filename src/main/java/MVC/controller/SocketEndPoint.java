@@ -14,11 +14,12 @@ import javax.servlet.http.Part;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/chatRoomServer")
-public class SocketEndPoint extends HttpServlet {
+public class SocketEndPoint {
     static Map<String, Session> users = new HashMap<String,Session>();
     //    static Map<user,Session> mapUsers = Collections.synchronizedMap(new HashMap<>());
     @OnOpen
     public void handleOpen(Session session) throws IOException {
+        System.out.println("co chay vao socket");
         users.put(session.getQueryString(),session);
         session.setMaxBinaryMessageBufferSize(999999999);
         session.setMaxTextMessageBufferSize(9999999);
@@ -26,6 +27,7 @@ public class SocketEndPoint extends HttpServlet {
 
     @OnMessage
     public void handleMessage(String message, Session userSession) throws IOException, EncodeException {
+        System.out.println("Message: " + message );
         JsonObject convertedObject = new Gson().fromJson(message, JsonObject.class);
         new ServiceChat().saveMessage(convertedObject);
         int receiverID = convertedObject.get("receiver").getAsInt();
@@ -34,8 +36,6 @@ public class SocketEndPoint extends HttpServlet {
         String sender_id = new ServiceChat().getIdByName(username);
         String sender_name = new ServiceChat().getNameByID(Integer.parseInt(sender_id)).replace(" ","%20");
         String sender_shop_name = new ServiceChat().getShopNameByID(Integer.parseInt(sender_id));
-        System.out.println("sender_name"+ sender_name);
-        System.out.println("sender_shop_name:" +sender_shop_name);
         convertedObject.add("sender_username",new Gson().fromJson(username,JsonElement.class));
         convertedObject.add("sender_id",new Gson().fromJson(sender_id,JsonElement.class));
         convertedObject.add("sender_name",new Gson().fromJson(sender_name,JsonElement.class));

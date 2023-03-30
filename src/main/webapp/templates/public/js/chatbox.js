@@ -85,12 +85,12 @@ function loadChatArea(Id) {
     http = new XMLHttpRequest();
 
     if (maxAmountChatRecords === 0) {
-        URL = "http://localhost:8080/chatData?userId=" + Id + "&maxAmountChatRecords=" + maxAmountChatRecords;
+        URL = "http://"+location.host+"/chatData?userId=" + Id + "&maxAmountChatRecords=" + maxAmountChatRecords;
         http.open("GET", URL, false);
         http.send();
         maxAmountChatRecords = parseInt(http.response);
     }
-    URL = "http://localhost:8080/chatData?userId=" + Id + "&indexLoadChat=" + indexLoadChat;
+    URL = "http://"+location.host+"/chatData?userId=" + Id + "&indexLoadChat=" + indexLoadChat;
     http.open("GET", URL, false);
     http.send();
     listMessage = JSON.parse(http.response);
@@ -131,8 +131,14 @@ function addMyMessage(message) {
     paraImg.className = "message my-img-message ";
     if (message.type_mess === "text") {
         const regex = /(https?:\/\/[^\s]+)/g;
+        let bytes = message.messages.split(",").map(function(byte) {
+            return parseInt(byte);
+        });
+        let arrayBuffer = new Uint8Array(bytes).buffer;
+        message.messages = new TextDecoder().decode(arrayBuffer).toString();
         message.messages = message.messages.replace(regex, '<a href="$1">$1</a>');
-        para.appendChild(document.createTextNode(message.messages));
+        para.className = "message my-message";
+        para.innerHTML = message.messages;
         element.appendChild(para);
     } else if (message.type_mess.split("/")[0] === "data:image") {
         let img = new Image();
@@ -177,8 +183,14 @@ function addOtherMessage(message) {
     paraImg.className = "message other-img-message";
     if (message.type_mess === "text") {
         const regex = /(https?:\/\/[^\s]+)/g;
+        let bytes = message.messages.split(",").map(function(byte) {
+            return parseInt(byte);
+        });
+        let arrayBuffer = new Uint8Array(bytes).buffer;
+        message.messages = new TextDecoder().decode(arrayBuffer).toString();
         message.messages = message.messages.replace(regex, '<a href="$1">$1</a>');
-        para.appendChild(document.createTextNode(message.messages));
+        para.className = "message other-message";
+        para.innerHTML = message.messages;
         element.appendChild(para);
     } else if (message.type_mess.split("/")[0] === "data:image") {
         let img = new Image();
@@ -201,7 +213,7 @@ function removeExistTag(ID, userName, name, shopname) {
     let senderChats = document.getElementsByClassName("tag-area");
     for (let i = 0; i < senderChats.length; i++) {
         let indexChat = senderChats[i].classList.item(1);
-        if (parseInt(Id) === parseInt(indexChat)) {
+        if (parseInt(ID) === parseInt(indexChat)) {
             senderChats[i].remove();
         }
     }
@@ -230,13 +242,15 @@ function addSenderTag(ID, username, name, shopname, position) {
     };
     img.src = "/templates/public/img/shop/" + ID + ".jpg";
     sub_img.append(img);
-    if (shopname !== "") {
-        sender_shopname.append(document.createTextNode(shopname));
+    if ((shopname !== null) && (shopname !== "")) {
+        sender_shopname.append(document.createTextNode(shopname.replaceAll("%20"," ")))
+        sender_tagname.append(sender_shopname);
+
     } else {
-        sender_shopname.append(document.createTextNode(name));
+        sender_shopname.append(document.createTextNode(name.replaceAll("%20"," ")));
+        sender_tagname.append(sender_shopname);
     }
     sender_username.append(document.createTextNode(username));
-    sender_tagname.append(sender_shopname);
     sender_tagname.append(sender_username);
     sender_user.append(sub_img);
     sender_user.append(sender_tagname);
@@ -262,7 +276,7 @@ document.getElementById("new-chat").addEventListener("input", (event) => {
         document.getElementById("list-search-name").style.display = "none";
     } else {
         document.getElementById("list-search-name").style.display = "flex";
-        http.open("GET", "http://localhost:8080/chatData?search=" + targetInput.value, false);
+        http.open("GET", "http://"+location.host+"/chatData?search=" + targetInput.value, false);
         http.send();
         let listResponse = JSON.parse(http.response);
         while (document.getElementById("list-search").firstChild) {
@@ -319,7 +333,7 @@ document.getElementById("list-search-name").addEventListener("click", (event) =>
 ///////////////////////////////////////////////
 let chat_messages;
 // Create Websocket Server
-const websocket = new WebSocket("ws://localhost:8080/chatRoomServer?" + username);
+const websocket = new WebSocket("ws://"+location.host+"/chatRoomServer?" + username);
 websocket.onopen = function () {
     processOpen();
 };
@@ -335,10 +349,11 @@ websocket.onerror = function (message) {
 
 function processOpen() {
     http = new XMLHttpRequest();
-    http.open("GET", "http://localhost:8080/chatData?username=" + username, false);
+    http.open("GET", "http://"+location.host+"/chatData?username=" + username, false);
     http.send();
     let listResponse = JSON.parse(http.response);
-    for (let i = 0; i < listResponse.listID.length; i++) {
+    console.log(listResponse);
+    for (let i = listResponse.listID.length-1 ; i >= 0; i--) {
         addSenderTag(listResponse.listID[i], listResponse.listUserName[i], listResponse.listName[i], listResponse.listShopName[i], document.getElementById("list-chat"));
     }
 }
@@ -356,7 +371,7 @@ async function sendMessage() {
         let chat_input = document.getElementById("chat_input_text");
         let message_data = [];
         if (chat_input.value !== "") {
-            message_data.push({type_mess: "text", name_mess: "", messages: chat_input.value});
+            message_data.push({type_mess: "text", name_mess: "", messages: new TextEncoder().encode(chat_input.value).toString()});
         }
 
         for (let i = 0; i < list_file.length; i++) {
@@ -371,7 +386,6 @@ async function sendMessage() {
             + ("00" + date.getHours()).slice(-2) + ":"
             + ("00" + date.getMinutes()).slice(-2)
             + ":" + ("00" + date.getSeconds()).slice(-2);
-
         websocket.send(JSON.stringify({
             username: username,
             receiver: indexCurrentFocus,
@@ -466,11 +480,13 @@ async function handleFileUpload() {
 // Nhan tin nhan
 function processMessage(message) {
     const obj = JSON.parse(message.data);
+    console.log(obj);
     if (parseInt(indexCurrentFocus) === obj.sender_id) {
         obj.data.forEach(ele => {
             addOtherMessage(ele);
         })
         removeExistTag(obj.sender_id, obj.sender_username, obj.sender_name, obj.sender_shop_name);
+        document.getElementById("chat_messages").scrollTop = document.getElementById("chat_messages").scrollHeight;
     } else {
         removeExistTag(obj.sender_id, obj.sender_username, obj.sender_name, obj.sender_shop_name);
         document.querySelector(".tag-area").style.color = "blue";
@@ -494,7 +510,7 @@ document.getElementById("chat_messages").addEventListener("click",function (even
         let indexCurrentSlice = 0;
         $(".modal-content-chat").append('            <span class="close cursor" onclick="closeModal()">&times;</span>\n');
         document.getElementById("myModal").style.display = "block";
-        document.getElementById("chat_messages").querySelectorAll("img").forEach((event, index) => {
+        document.getElementById("chat_messages").querySelectorAll(".message > img").forEach((event, index) => {
             if (eventSrc === event.src){
                 indexCurrentSlice = index + 1;
             }
@@ -507,7 +523,7 @@ document.getElementById("chat_messages").addEventListener("click",function (even
             '            <a class="next" onclick="plusSlides(1)">&#10095;</a>');
         $(".modal-content-chat").append("<div class='tiny-slice-area'></div>")
         $(".tiny-slice-area").append("<div class='tiny-slice'></div>");
-        document.getElementById("chat_messages").querySelectorAll("img").forEach((event, index) => {
+        document.getElementById("chat_messages").querySelectorAll(".message > img").forEach((event, index) => {
             $(".tiny-slice").append('            <div class="column">\n' +
                 '                <img class="demo cursor" src="'+event.src+'" style="width:100%; height:100%" onclick="currentSlide('+(index+1)+')" alt="Nature and sunrise">\n' +
                 '            </div>');

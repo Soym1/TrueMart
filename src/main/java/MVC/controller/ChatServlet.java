@@ -26,10 +26,6 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = {"/chatData"})
 public class ChatServlet extends HttpServlet {
     @Override
-    public void init() throws ServletException {
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Gson gson = new Gson();
         String json;
@@ -39,7 +35,6 @@ public class ChatServlet extends HttpServlet {
 
         if (req.getParameter("username") != null) {
             String username = String.valueOf(req.getParameter("username"));
-            String userId = new ServiceChat().getIdByName(username);
             User user = new ServiceChat().getUser(username);
             List<Integer> listID =  new ServiceChat().getListContact(user.getUser_id());
             List<String> listUserName = new ServiceChat().getListUserNameByID(listID);
@@ -70,7 +65,6 @@ public class ChatServlet extends HttpServlet {
             printWriter.close();
         }
         if (req.getParameter("userId") != null){
-            System.out.println("LINk "+ req.getServletPath());
             HttpSession session = req.getSession();
             int idUserSender = ((Users) session.getAttribute("UserLogin")).getId();
             int idUserReceiver = Integer.parseInt(req.getParameter("userId"));
@@ -89,9 +83,17 @@ public class ChatServlet extends HttpServlet {
         }
 
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        doGet(req, resp);
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    }
+
 }

@@ -113,12 +113,7 @@
                             </div>
                             <span><a href="/Authed?actionUser=login" style="color: white;font-size: 14px">Login </a>|<a
                                     href="/register" style="color: white;font-size: 14px"> Register</a></span>
-                            <div id="menu-toggle">
-                                <a href="">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
+
                         </div>
                         </c:if>
                         <c:if test="${UserLogin != null}">
@@ -156,17 +151,17 @@
                                     <span>Logout</span>
                                 </a>
                             </div>
-                            <div id="menu-toggle">
-                                <a href="">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
+
                             <%@include file="/view/public/chat.jsp" %>
                             </c:if>
                             <!-- /Wishlist -->
                             <!-- Menu Toogle -->
-
+                            <div id="menu-toggle">
+                                <a>
+                                    <i class="fa fa-bars"></i>
+                                    <span>Menu</span>
+                                </a>
+                            </div>
                             <!-- /Menu Toogle -->
                         </div>
                     </div>
@@ -176,6 +171,7 @@
             </div>
             <!-- container -->
         </div>
+    </div>
         <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->

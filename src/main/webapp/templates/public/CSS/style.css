@@ -201,7 +201,7 @@ textarea.input {
 /*-- Select input --*/
 
 .input-select {
-    padding: 0px 15px;
+    padding: 0px 14px;
     background: #FFF;
     border: 1px solid #E4E7ED;
     height: 40px;
@@ -492,7 +492,7 @@ textarea.input {
 }
 
 .header-search form .input-select {
-    margin-right: -4px;
+    margin-right: -5px;
     border-radius: 40px 0px 0px 40px;
 }
 
@@ -1155,6 +1155,7 @@ div#menu-toggle {
 .product-widget .product-body {
     padding-left: 75px;
     min-height: 90px;
+    margin-bottom: 10px;
 }
 
 .product-widget .product-body .product-category {
@@ -1237,6 +1238,7 @@ div#menu-toggle {
 }
 
 .products-tabs > .tab-pane.active {
+    width: 100%;
     opacity: 1;
     visibility: visible;
     height: auto;
@@ -2205,7 +2207,6 @@ div#tab1, div#tab2 {
 
 
 /* googel font poppins */
-@import url('css/css.css');
 
 /*----------------------------------------*/
 /* 1. Theme Default CSS
@@ -3605,7 +3606,7 @@ li.megamenu-img a {
 }
 
 .l_sale {
-    background: rgba(0, 0, 0, 0) url("img/icon/bg-l-sale.png") no-repeat scroll right center;
+    background: rgba(0, 0, 0, 0)  no-repeat scroll right center;
     bottom: 20px;
     color: #e62e04;
     font-size: 20px;
@@ -5121,13 +5122,6 @@ li.megamenu-img a {
     right: 20px;
 }
 
-.category-menu.v-cat-menu ul li.has-sub > a {
-    background: rgba(0, 0, 0, 0) url("img/vertical-menu/icon-expand.png") no-repeat scroll 20px 9px;
-}
-
-.category-menu.v-cat-menu .has-sub.open > a {
-    background: rgba(0, 0, 0, 0) url("img/vertical-menu/icon-collapse.png") no-repeat scroll 20px 9px;
-}
 
 /*img/vertical-menu/icon-expand.png*/
 .category-menu.v-cat-menu ul li.has-sub > a::after {
@@ -6967,7 +6961,7 @@ ul.d-flex.align-items-center {
     border: 2px solid black;
     border-radius: 5px;
     padding: 30px 10px 10px 10px;
-    margin-left: 437px;
+    margin: 0 31%;
     margin-top: 82px;
     margin-bottom: 159px;
 }
@@ -7413,5 +7407,21 @@ label {
     background-color: rgba(247, 247, 247, 1);
     border: 0px;
     outline: none;
+}
+.alert-add-cart {
+    position: fixed;
+    top: 15%;
+    left: 45%;
+    z-index: 1000;
+    animation: fadeOut 5s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 

@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class BaseRepository implements ImpRepository {
-    private static String jdbcURL = "jdbc:mysql://y5svr1t2r5xudqeq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/txst4xxl7p9lyl4v";
-    private static String jdbcUsername = "y4xg3jn0sl73gky6";
-    private static String jdbcPassword = "dh9bd81jo7xkfwj8";
+//    private static String jdbcURL = "jdbc:mysql://y5svr1t2r5xudqeq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zujjqd9uvilcxk66";
+    private static String jdbcURL = "jdbc:mysql://localhost:3306/truemart";
+    private static String jdbcUsername = "root";
+    private static String jdbcPassword = "3951320";
     private static Connection connection;
 
     public static Connection getConnection() {

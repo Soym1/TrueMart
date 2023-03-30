@@ -91,5 +91,6 @@ public class PaymentServlet extends HttpServlet {
         request.setAttribute("discount",0);
         CartServlet.listCart.put(username, new HashMap<>());
         request.getRequestDispatcher("/view/public/invoice.jsp").forward(request,response);
+
     }
 }

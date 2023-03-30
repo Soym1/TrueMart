@@ -138,15 +138,19 @@
 }
 
 /*=============== Medium (md) Device ===============*/
-@media (min-width: 621px) and (max-width: 991px) {
+@media (min-width: 621px) and (max-width: 992px) {
     .header-top ul > li > a, .header-top ul > li > span {
         font-size: 12px;
     }
-
+    .header-search form .input{
+        margin-right: -6px!important;
+    }
     .title-box {
         min-height: 338px;
     }
-
+    .product .product-img {
+        height: 45%!important;
+    }
     .right-sider-banner {
         display: -moz-flex;
         display: -ms-flex;
@@ -189,7 +193,9 @@
     .tabs-area li a {
         font-size: 14px;
     }
-
+    .header-search form .input-select{
+        margin-top: 2px;
+    }
     .footer-top .row div:nth-child(4) .single-footer, .footer-top .row div:nth-child(5) .single-footer {
         margin-top: 40px;
     }
@@ -318,9 +324,7 @@
         margin-bottom: 60px;
         margin-top: 15px;
     }
-    #rating {
-        text-align: center;
-    }
+
     #reviews {
         margin-top: 30px;
         margin-bottom: 30px;
@@ -346,6 +350,31 @@
     .col-lg-4.col-md-6.col-sm-6 {
         height: 275px!important;
     }
+    div#tab-new-product,
+    tab-top-selling{
+        width: 100%;
+    }
+    .product slick-slide{
+        width: 200px!important;
+    }
+    .section-tab-nav li{
+        font-size: 12px!important;
+    }
+    .col-md-4.col-xs-6.\35,
+    .col-md-4.col-xs-6.\33{
+        display: none;
+    }
+    .login{
+        margin: 0 18%!important;
+    }
+
+    #product-imgs .product-preview{
+        height: 200px!important;
+    }
+    .product-imgs{
+        height: 260px!important;
+    }
+
 }
 
 
@@ -358,7 +387,12 @@
         -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     }
-
+    .slick-list.draggable {
+        height: 230px !important;
+    }
+    #product-imgs .product-preview.slick-current{
+        height: 100px!important;
+    }
     .hot-product2 .pro-actions {
         display: block;
         padding-right: 0;
@@ -555,8 +589,15 @@
     select.input-select {
         display: none!important;
     }
-    .product .product-img {
-        height: 100%!important;
+
+    .section-title .section-nav{
+        float: left;!important;
+    }
+    .section-title .section-nav .section-tab-nav{
+        font-size: 11px!important;
+    }
+    .section-tab-nav li{
+        margin-right: 15px!important;
     }
     .footer-top .row div:nth-child(4) .single-footer, .footer-top .row div:nth-child(5) .single-footer {
         margin-top: 0;
