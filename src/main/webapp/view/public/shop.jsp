@@ -92,5 +92,4 @@
 		</div>
 		<!-- /SECTION -->
 
-<%@include file="/view/public/chat.jsp"%>
 <%@include file="/templates/public/inc/footer.jsp"%>

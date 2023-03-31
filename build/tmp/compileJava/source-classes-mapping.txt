@@ -80,8 +80,8 @@ MVC/respository/IShopRepository.java
  MVC.respository.IShopRepository
 MVC/model/User.java
  MVC.model.User
-MVC/respository/impl/ChatRepository.java
- MVC.respository.impl.ChatRepository
+MVC/controller/SocketEndPoint.java
+ MVC.controller.SocketEndPoint
 MVC/respository/IUsersRepository.java
  MVC.respository.IUsersRepository
 MVC/controller/ContactServlet.java
@@ -118,8 +118,8 @@ MVC/util/DefineUtil.java
  MVC.util.DefineUtil
 MVC/util/CharsetFilter.java
  MVC.util.CharsetFilter
-MVC/respository/impl/CategoryRepository.java
- MVC.respository.impl.CategoryRepository
+MVC/controller/AuthenticationServlet.java
+ MVC.controller.AuthenticationServlet
 MVC/model/OrderItem.java
  MVC.model.OrderItem
 MVC/service/Impl/ProductService.java
@@ -144,8 +144,8 @@ MVC/service/IShopService.java
  MVC.service.IShopService
 MVC/controller/ListProductServlet.java
  MVC.controller.ListProductServlet
-MVC/respository/impl/ContactRepository.java
- MVC.respository.impl.ContactRepository
+MVC/service/Impl/ServiceChat.java
+ MVC.service.Impl.ServiceChat
 MVC/respository/impl/UsersRepository.java
  MVC.respository.impl.UsersRepository
 MVC/service/Impl/Service.java
@@ -154,15 +154,15 @@ MVC/respository/impl/ProductRepository.java
  MVC.respository.impl.ProductRepository
 MVC/respository/impl/InvoiceRepository.java
  MVC.respository.impl.InvoiceRepository
-MVC/respository/impl/ShopRepository.java
- MVC.respository.impl.ShopRepository
+MVC/respository/impl/ChatRepository.java
+ MVC.respository.impl.ChatRepository
 MVC/respository/impl/ReviewRepository.java
  MVC.respository.impl.ReviewRepository
 MVC/respository/impl/BaseRepository.java
  MVC.respository.impl.BaseRepository
-MVC/controller/SocketEndPoint.java
- MVC.controller.SocketEndPoint
-MVC/service/Impl/ServiceChat.java
- MVC.service.Impl.ServiceChat
-MVC/controller/AuthenticationServlet.java
- MVC.controller.AuthenticationServlet
+MVC/respository/impl/ShopRepository.java
+ MVC.respository.impl.ShopRepository
+MVC/respository/impl/ContactRepository.java
+ MVC.respository.impl.ContactRepository
+MVC/respository/impl/CategoryRepository.java
+ MVC.respository.impl.CategoryRepository
